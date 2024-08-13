@@ -5,6 +5,6 @@ Script for setting up new linux system with things I use on my system with shell
 * gh (github cli) 
 * kitty  Terminal Emulator
 * VsCode
-* Copyq (Clipboard manager) 
+* Copyq (Clipboard manager) (Keepboard is a better alternative in ubuntu App center)
 * Ulauncher (Application Laucher for linux, like spotlight)
 
