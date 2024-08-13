@@ -1,0 +1,60 @@
+Aug 13 01:07:55 jh-Modern14 kernel: ACPI BIOS Error (bug): Could not resolve symbol [\_SB.PCI0.SBRG.EC0], AE_NOT_FOUND (20230628/dswload2-162)
+Aug 13 01:07:55 jh-Modern14 kernel: ACPI Error: AE_NOT_FOUND, During name lookup/catalog (20230628/psobject-220)
+Aug 13 01:07:55 jh-Modern14 kernel: ACPI BIOS Error (bug): Could not resolve symbol [\_SB.PCI0.GP17.MP2], AE_NOT_FOUND (20230628/psargs-330)
+Aug 13 01:07:55 jh-Modern14 kernel: ACPI Error: Aborting method \_SB.GPIO._EVT due to previous error (AE_NOT_FOUND) (20230628/psparse-529)
+Aug 13 01:07:56 jh-Modern14 kernel: Bluetooth: hci0: No dsm support to set reset delay
+Aug 13 01:07:56 jh-Modern14 kernel: iwlwifi 0000:01:00.0: WRT: Invalid buffer destination
+Aug 13 01:07:59 jh-Modern14 bluetoothd[897]: profiles/sap/server.c:sap_server_register() Sap driver initialization failed.
+Aug 13 01:07:59 jh-Modern14 bluetoothd[897]: sap-server: Operation not permitted (1)
+Aug 13 01:07:59 jh-Modern14 kernel: amdgpu 0000:03:00.0: amdgpu: Secure display: Generic Failure.
+Aug 13 01:07:59 jh-Modern14 kernel: amdgpu 0000:03:00.0: amdgpu: SECUREDISPLAY: query securedisplay TA failed. ret 0x0
+Aug 13 01:08:00 jh-Modern14 kernel: iwlwifi 0000:01:00.0: WRT: Invalid buffer destination
+Aug 13 01:08:01 jh-Modern14 canonical-livepatch.canonical-livepatchd[1274]: Task "refresh" returned an error: livepatch check failed: POST request to "https://livepatch.canonical.com/v1/client/2e40d178d49f4dd981f20de528d12ea8/updates" failed, retrying in 30s.
+Aug 13 01:08:16 jh-Modern14 gdm-password][2018]: gkr-pam: unable to locate daemon control file
+Aug 13 01:08:18 jh-Modern14 systemd[2041]: Failed to start app-gnome-gnome\x2dkeyring\x2dpkcs11-2289.scope - Application launched by gnome-session-binary.
+Aug 13 01:08:18 jh-Modern14 systemd[2041]: Failed to start app-gnome-gnome\x2dkeyring\x2dssh-2287.scope - Application launched by gnome-session-binary.
+Aug 13 01:10:39 jh-Modern14 kernel: ACPI Error: No handler for Region [VRTC] (0000000069a4d734) [SystemCMOS] (20230628/evregion-130)
+Aug 13 01:10:39 jh-Modern14 kernel: ACPI Error: Region SystemCMOS (ID=5) has no handler (20230628/exfldio-261)
+Aug 13 01:10:39 jh-Modern14 kernel: ACPI Error: Aborting method \_SB.PCI0.SBRG.EC._Q9A due to previous error (AE_NOT_EXIST) (20230628/psparse-529)
+Aug 13 01:34:56 jh-Modern14 bluetoothd[897]: Failed to set mode: Failed (0x03)
+Aug 13 01:45:52 jh-Modern14 kernel: ACPI Error: No handler for Region [VRTC] (0000000069a4d734) [SystemCMOS] (20230628/evregion-130)
+Aug 13 01:45:52 jh-Modern14 kernel: ACPI Error: Region SystemCMOS (ID=5) has no handler (20230628/exfldio-261)
+Aug 13 01:45:52 jh-Modern14 kernel: ACPI Error: Aborting method \_SB.PCI0.SBRG.EC._Q9A due to previous error (AE_NOT_EXIST) (20230628/psparse-529)
+Aug 13 01:46:22 jh-Modern14 kernel: ACPI Error: No handler for Region [VRTC] (0000000069a4d734) [SystemCMOS] (20230628/evregion-130)
+Aug 13 01:46:22 jh-Modern14 kernel: ACPI Error: Region SystemCMOS (ID=5) has no handler (20230628/exfldio-261)
+Aug 13 01:46:22 jh-Modern14 kernel: ACPI Error: Aborting method \_SB.PCI0.SBRG.EC._Q9A due to previous error (AE_NOT_EXIST) (20230628/psparse-529)
+Aug 13 02:08:20 jh-Modern14 bluetoothd[897]: src/profile.c:ext_io_disconnected() Unable to get io data for Hands-Free Voice gateway: getpeername: Transport endpoint is not connected (107)
+Aug 13 02:08:22 jh-Modern14 bluetoothd[897]: src/profile.c:record_cb() Unable to get Hands-Free Voice gateway SDP record: Host is down
+Aug 13 02:17:42 jh-Modern14 canonical-livepatch.canonical-livepatchd[1274]: Task "refresh" returned an error: livepatch check failed: POST request to "https://livepatch.canonical.com/v1/client/2e40d178d49f4dd981f20de528d12ea8/updates" failed, retrying in 30s.
+Aug 13 03:13:51 jh-Modern14 bluetoothd[897]: src/profile.c:ext_io_disconnected() Unable to get io data for Hands-Free Voice gateway: getpeername: Transport endpoint is not connected (107)
+Aug 13 13:15:05 jh-Modern14 kernel: iwlwifi 0000:01:00.0: WRT: Invalid buffer destination
+Aug 13 13:48:21 jh-Modern14 bluetoothd[897]: src/profile.c:ext_io_disconnected() Unable to get io data for Hands-Free Voice gateway: getpeername: Transport endpoint is not connected (107)
+Aug 13 13:55:48 jh-Modern14 bluetoothd[897]: src/profile.c:ext_io_disconnected() Unable to get io data for Hands-Free Voice gateway: getpeername: Transport endpoint is not connected (107)
+Aug 13 14:43:32 jh-Modern14 kernel: iwlwifi 0000:01:00.0: WRT: Invalid buffer destination
+Aug 13 14:48:54 jh-Modern14 canonical-livepatch.canonical-livepatchd[1274]: Task "refresh" returned an error: livepatch check failed: POST request to "https://livepatch.canonical.com/v1/client/2e40d178d49f4dd981f20de528d12ea8/updates" failed, retrying in 30s.
+Aug 13 14:49:24 jh-Modern14 canonical-livepatch.canonical-livepatchd[1274]: Task "refresh" returned an error: livepatch check failed: POST request to "https://livepatch.canonical.com/v1/client/2e40d178d49f4dd981f20de528d12ea8/updates" failed, retrying in 1m0s.
+Aug 13 14:49:24 jh-Modern14 bluetoothd[897]: src/profile.c:ext_io_disconnected() Unable to get io data for Hands-Free Voice gateway: getpeername: Transport endpoint is not connected (107)
+Aug 13 14:58:32 jh-Modern14 kernel: iwlwifi 0000:01:00.0: WRT: Invalid buffer destination
+Aug 13 15:13:19 jh-Modern14 kernel: ACPI Error: No handler for Region [VRTC] (0000000069a4d734) [SystemCMOS] (20230628/evregion-130)
+Aug 13 15:13:19 jh-Modern14 kernel: ACPI Error: Region SystemCMOS (ID=5) has no handler (20230628/exfldio-261)
+Aug 13 15:13:19 jh-Modern14 kernel: ACPI Error: Aborting method \_SB.PCI0.SBRG.EC._Q9A due to previous error (AE_NOT_EXIST) (20230628/psparse-529)
+Aug 13 15:28:31 jh-Modern14 apport-gtk[33842]: Can't create a GtkStyleContext without a display connection
+Aug 13 15:29:12 jh-Modern14 gdm-password][34622]: gkr-pam: unable to locate daemon control file
+Aug 13 15:29:15 jh-Modern14 systemd[34642]: Failed to start app-gnome-ubuntu\x2dreport\x2don\x2dupgrade-35173.scope - Application launched by gnome-session-binary.
+Aug 13 15:53:02 jh-Modern14 bluetoothd[897]: src/profile.c:ext_io_disconnected() Unable to get io data for Hands-Free Voice gateway: getpeername: Transport endpoint is not connected (107)
+Aug 13 17:52:50 jh-Modern14 kernel: iwlwifi 0000:01:00.0: WRT: Invalid buffer destination
+Aug 13 17:57:14 jh-Modern14 bluetoothd[897]: src/profile.c:ext_io_disconnected() Unable to get io data for Hands-Free Voice gateway: getpeername: Transport endpoint is not connected (107)
+Aug 13 17:57:20 jh-Modern14 bluetoothd[897]: profiles/audio/avdtp.c:avdtp_connect_cb() connect to AC:80:0A:42:B4:EA: Host is down (112)
+Aug 13 17:57:27 jh-Modern14 bluetoothd[897]: profiles/audio/avdtp.c:avdtp_connect_cb() connect to AC:80:0A:42:B4:EA: Host is down (112)
+Aug 13 17:57:36 jh-Modern14 bluetoothd[897]: profiles/audio/avdtp.c:avdtp_connect_cb() connect to AC:80:0A:42:B4:EA: Host is down (112)
+Aug 13 17:57:49 jh-Modern14 bluetoothd[897]: profiles/audio/avdtp.c:avdtp_connect_cb() connect to AC:80:0A:42:B4:EA: Host is down (112)
+Aug 13 17:58:10 jh-Modern14 bluetoothd[897]: profiles/audio/avdtp.c:avdtp_connect_cb() connect to AC:80:0A:42:B4:EA: Host is down (112)
+Aug 13 17:58:47 jh-Modern14 bluetoothd[897]: profiles/audio/avdtp.c:avdtp_connect_cb() connect to AC:80:0A:42:B4:EA: Host is down (112)
+Aug 13 17:59:56 jh-Modern14 bluetoothd[897]: profiles/audio/avdtp.c:avdtp_connect_cb() connect to AC:80:0A:42:B4:EA: Host is down (112)
+Aug 13 18:08:36 jh-Modern14 bluetoothd[897]: src/profile.c:record_cb() Unable to get Hands-Free Voice gateway SDP record: Host is down
+Aug 13 18:24:57 jh-Modern14 bluetoothd[897]: src/profile.c:ext_io_disconnected() Unable to get io data for Hands-Free Voice gateway: getpeername: Transport endpoint is not connected (107)
+Aug 13 18:45:50 jh-Modern14 gdm-password][41281]: gkr-pam: unable to locate daemon control file
+Aug 13 18:45:52 jh-Modern14 systemd[34642]: Failed to start app-gnome-ubuntu\x2dreport\x2don\x2dupgrade-41665.scope - Application launched by gnome-session-binary.
+Aug 13 18:45:52 jh-Modern14 systemd[34642]: Failed to start app-gnome-user\x2ddirs\x2dupdate\x2dgtk-41692.scope - Application launched by gnome-session-binary.
+Aug 13 18:58:10 jh-Modern14 bluetoothd[897]: src/profile.c:ext_io_disconnected() Unable to get io data for Hands-Free Voice gateway: getpeername: Transport endpoint is not connected (107)
+Aug 13 19:00:37 jh-Modern14 bluetoothd[897]: src/profile.c:ext_io_disconnected() Unable to get io data for Hands-Free Voice gateway: getpeername: Transport endpoint is not connected (107)
