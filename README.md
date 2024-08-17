@@ -7,4 +7,4 @@ Script for setting up new linux system with things I use on my system with shell
 * VsCode
 * Copyq (Clipboard manager) (Keepboard is a better alternative in ubuntu App center)
 * Ulauncher (Application Laucher for linux, like spotlight)
-
+* birghtness issue of ubuntu system on wayland sol in brt.sol
