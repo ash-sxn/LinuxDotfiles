@@ -21,26 +21,23 @@ This setup includes packages from multiple sources:
 
 ## Applications & Dotfiles
 
-Below is a comprehensive list of applications installed on your system. Check the boxes for applications that need custom configuration files to be backed up.
+Below is a comprehensive list of applications that will be installed in your new system setup.
 
 ### Terminal & Shell
 
-- [ ] kitty (Terminal emulator) - *Backed up*
-- [ ] tmux (Terminal multiplexer) - *Backed up*
-- [ ] zsh (Z shell) - *Backed up*
-- [ ] bash (Bourne Again SHell) - *Backed up*
-- [ ] nvim (Neovim text editor) - *Backed up*
+- [x] kitty (Terminal emulator) - *Backed up*
+- [x] tmux (Terminal multiplexer) - *Backed up*
+- [x] zsh (Z shell) - *Backed up*
+- [x] Oh My ZSH (ZSH framework)
+- [x] nvim (Neovim text editor) - *Backed up*
 
 ### Development Tools
 
-- [ ] Git - *Backed up*
-- [ ] GitHub CLI (gh) - *Backed up*
-- [ ] VS Code - *Backed up*
-- [ ] VS Code Insiders
-- [ ] build-essential (development tools)
-- [ ] cmake
-- [ ] curl, wget (download utilities)
-- [ ] Docker/Containerd
+- [x] Git - *Backed up*
+- [x] GitHub CLI (gh) - *Backed up*
+- [x] curl, wget (download utilities)
+- [x] Docker/Containerd
+- [x] Cursor (AI-powered IDE)
 
 #### VS Code Extensions
 - GitHub Copilot
@@ -56,51 +53,31 @@ Below is a comprehensive list of applications installed on your system. Check th
 
 ### Browsers
 
-- [ ] Brave Browser - *Backed up*
-- [ ] Chromium (Snap)
-- [ ] Firefox (Snap)
+- [x] Brave Browser - *Backed up*
+- [x] Firefox (Snap)
 
 ### Productivity & Utilities
 
-- [ ] CopyQ (Clipboard manager) - *Backed up*
-- [ ] Keepboard (from Snap)
-- [ ] Ulauncher (Application launcher) - *Backed up*
-- [ ] Telegram (Flatpak)
-- [ ] Slack (Flatpak)
-- [ ] Whatsapp for Linux (Snap)
-- [ ] AnyDesk (Remote desktop)
-- [ ] dconf-editor (GNOME configuration tool)
+- [x] CopyQ (Clipboard manager) - *Backed up* (Looking for better alternatives)
+- [x] Ulauncher (Application launcher) - *Backed up*
+- [x] Slack (Flatpak)
+- [x] Signal (Secure messaging app)
+- [x] Upwork (Freelancing platform)
 
 ### Multimedia
 
-- [ ] DuckStation (PlayStation emulator, Flatpak)
-- [ ] Mednaffe (Frontend for Mednafen emulator, Flatpak)
-- [ ] Steam (Gaming platform, Snap)
+- [x] MPV (Media player)
+- [x] VLC (Media player)
 
 ### System Tools
 
-- [ ] baobab (Disk usage analyzer)
-- [ ] Firmware Updater (Snap)
-- [ ] aria2 (Download utility)
-- [ ] bridge-utils (Network utilities)
-- [ ] bluetooth (Bluetooth tools)
-- [ ] Woe-USB (Create Windows bootable USB, Snap)
+- [x] bridge-utils (Network utilities for managing bridge connections)
+- [x] bluetooth (Bluetooth connectivity tools)
+- [x] Free Download Manager (or open-source alternative)
 
-### GNOME Desktop Environment
+## GNOME Desktop Environment
 
-- [ ] GNOME Shell - *Backed up*
-- [ ] GNOME Session - *Backed up*
-- [ ] GNOME Tweaks
-- [ ] GTK 3.0/4.0 Themes - *Backed up*
-- [ ] HydraPaper (Wallpaper manager, Flatpak)
-
-### Other Applications
-
-- [ ] Fagram (Snap)
-- [ ] Komikku (Manga reader, Flatpak)
-- [ ] Proton Up QT (Proton manager for Steam, Flatpak)
-- [ ] Wayback (Internet Archive client, Flatpak)
-- [ ] Telega (Snap)
+Will be configured separately in detail later.
 
 ## Instructions for Use
 
@@ -146,9 +123,31 @@ Below is a comprehensive list of applications installed on your system. Check th
 - Check the compatibility of your packages with your target distribution
 - Always review configuration files before applying them to a new system
 
-## Customization Checklist
+## Clipboard Manager Alternatives
 
-For each application in the list above:
-1. Mark the checkbox if you need to back up its custom configuration
-2. Review existing configuration in `~/.config/` and other locations
-3. Update the collect_dotfiles.sh script to include additional directories if needed
+Some better alternatives to CopyQ and Keepboard:
+
+1. **Clipman** - Lightweight, Wayland-compatible clipboard manager
+2. **Clipit** - GTK-based clipboard manager with good feature set
+3. **Klipper** - KDE clipboard manager (if you ever use KDE)
+4. **GPaste** - GNOME Shell compatible clipboard manager with good integration
+
+## System Tools Explained
+
+- **bridge-utils**: Used for configuring network bridge interfaces in Linux. Helpful if you use virtual machines or containers that need to share your network connection. In Arch Linux, install with `pacman -S bridge-utils`.
+
+- **bluetooth**: Tools for handling Bluetooth connections. In Arch Linux, you'll need the `bluez` and `bluez-utils` packages, installed with `pacman -S bluez bluez-utils`. You'll also need to enable the Bluetooth service with `systemctl enable bluetooth.service`.
+
+## Download Manager Options
+
+- **Free Download Manager**: Not fully open-source. Some alternatives:
+  - **uGet**: Open-source download manager with good features
+  - **aria2**: Command-line download utility with web UIs available
+  - **JDownloader**: Java-based download manager with extensive features
+  - **XDM (Xtreme Download Manager)**: Open-source alternative with browser integration
+
+## Next Steps
+
+1. For each application, we'll create installation scripts that work across different Linux distributions
+2. We'll handle GNOME desktop configuration separately
+3. The collect_dotfiles.sh script will be updated to ensure all necessary configuration files are backed up
