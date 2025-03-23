@@ -1,0 +1,22 @@
+Alacritty - A cross-platform, GPU-accelerated terminal emulator
+
+Alacritty is a modern terminal emulator that comes with sensible defaults and offers good performance. It takes advantage of GPU acceleration to provide a smooth and responsive terminal experience. Written in Rust, it's designed to be simple, fast, and feature-complete.
+
+Key Features:
+• GPU-accelerated rendering for improved performance
+• Cross-platform (Linux, macOS, Windows, BSD)
+• Simple, clean YAML configuration
+• Vi mode for keyboard-based navigation
+• Low latency with high refresh rate
+• Customizable key bindings
+• Support for scrollback, search, and selection
+• Unicode support and font fallback
+• URL detection and clicking
+• Configurable text styles (bold, italic, underline)
+• Ability to adjust window opacity
+• Live configuration reload without restarting
+• Custom color schemes
+• Multiple terminal windows from a single process
+• Support for 24-bit true color and wide-gamut color spaces
+
+Alacritty focuses on simplicity and performance rather than having a large feature set. It doesn't include tabs or splits natively but works well with terminal multiplexers like tmux to provide these features. 

@@ -1,0 +1,23 @@
+MPV - Free, open-source, and cross-platform media player
+
+MPV is a free, open-source, and cross-platform media player. It is a fork of mplayer2 and MPlayer, offering a minimalist interface with a focus on high quality video and audio playback. MPV supports a wide range of media file formats, streaming protocols, and video/audio codecs.
+
+Key Features:
+• Minimalist but highly configurable user interface
+• High-quality video output with GPU acceleration
+• Advanced color management and HDR support
+• Extensive subtitle support with ASS/SSA rendering
+• Hardware video decoding on all platforms
+• Command line interface and scripting capabilities
+• Multi-platform support (Windows, macOS, Linux)
+• Comprehensive video filtering system
+• Smooth motion interpolation
+• Support for streaming from YouTube and other sites
+• Gapless audio playback
+• Precise seeking capabilities
+• Extensive keyboard shortcut system
+• Screenshot functionality
+• Wide range of configuration options
+• Extensible with Lua scripts and JavaScript
+
+MPV strikes an excellent balance between simplicity and power. With minimal UI elements by default, it puts the focus on the content, while offering numerous customization options for advanced users who want to fine-tune their viewing experience. Its performance-oriented design makes it particularly suitable for playing high-resolution video content even on modest hardware. 

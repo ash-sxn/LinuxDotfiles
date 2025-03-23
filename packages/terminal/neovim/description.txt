@@ -1,0 +1,20 @@
+Neovim - Hyperextensible Vim-based text editor
+
+Neovim is a fork of Vim aiming to improve user experience, plugins, and GUIs. It's a highly configurable text editor built to enable efficient text editing with speed and precision. Neovim maintains backward compatibility with Vim while introducing new features and improvements.
+
+Key Features:
+• Modern codebase with better architecture than Vim
+• Asynchronous plugin system for faster operations
+• Built-in terminal emulator
+• LSP (Language Server Protocol) client for IDE-like features
+• Lua integration for configuration and plugins
+• Extensive API for creating plugins and GUIs
+• First-class support for embedded GUIs
+• Cross-platform (Linux, macOS, Windows)
+• Global extmark for 100% accurate syntax highlighting
+• Virtual text (annotations) that doesn't affect buffer content
+• Improved user experience with sensible defaults
+• Strong plugin ecosystem with package managers
+• Active development community
+
+Neovim provides a seamless transition for Vim users while offering modern enhancements that make text editing more efficient and enjoyable. Its extensible architecture allows users to customize their editing environment to match their specific workflow needs. 

@@ -1,0 +1,13 @@
+Terminal multiplexer that allows multiple terminal sessions within a single window
+Tmux is a terminal multiplexer that lets you switch between several programs through windows and panes in a single terminal, detach them from a session, and reattach them to a different session.
+
+Features:
+- Multiple terminal sessions within a single window
+- Session persistence (detach and reattach sessions)
+- Split terminal windows into panes
+- Window and session management
+- Scriptable configuration
+- Copy mode with vim-like keybindings
+- Plugin ecosystem
+- Session sharing between multiple users
+- Customizable status bar 

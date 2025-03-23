@@ -1,0 +1,22 @@
+Visual Studio Code - A powerful source code editor
+
+Visual Studio Code (VS Code) is a free, open-source code editor developed by Microsoft. It has become one of the most popular development tools due to its blend of simplicity and powerful features. VS Code strikes an excellent balance between the lightweight feel of a text editor and the comprehensive tooling of an integrated development environment (IDE).
+
+Key Features:
+• Cross-platform support (Windows, macOS, and Linux)
+• IntelliSense code completion for multiple languages
+• Built-in Git integration for version control
+• Debugging support for a variety of languages
+• Extension marketplace with thousands of add-ons
+• Customizable interface with themes and settings
+• Integrated terminal
+• Split editors and multiple viewports
+• Regular updates and active development
+• Live Share for real-time collaboration
+• Remote development capabilities
+• GitHub Copilot integration for AI-assisted coding
+• Powerful search and replace functionality
+• Markdown preview
+• Built-in snippet support
+
+VS Code has revolutionized code editing with its extensible architecture, allowing developers to add support for virtually any programming language, framework, or tool through extensions. Its lightweight core paired with its powerful extension system makes it an ideal choice for developers of all experience levels across a wide range of programming disciplines. 

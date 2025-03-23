@@ -1,0 +1,21 @@
+Docker - Container platform for building, shipping, and running applications
+
+Docker is an open platform for developing, shipping, and running applications in isolated environments called containers. Containers are lightweight, portable, and self-sufficient, including everything needed to run an application: code, runtime, system tools, libraries, and settings. This allows applications to run consistently across different environments, from development to testing to production.
+
+Key Features:
+• Containerization technology that packages applications with their dependencies
+• Lightweight and efficient compared to traditional virtual machines
+• Consistent environments across development, testing, and production
+• Isolation of applications for improved security
+• Microservices architecture support
+• Docker Hub for sharing and accessing container images
+• Docker Compose for defining multi-container applications
+• Docker Swarm for container orchestration (though Kubernetes is more widely adopted)
+• Integration with CI/CD pipelines
+• Resource efficiency through shared OS kernel
+• Fast application startup times
+• Version control for containers
+• Easy horizontal scaling
+• Built-in networking capabilities
+
+Docker revolutionized software development by solving the "it works on my machine" problem. It allows developers to focus on writing code without worrying about the environment in which it will run. Docker has become an essential tool in modern software development workflows, particularly for microservices architectures and cloud-native applications. 

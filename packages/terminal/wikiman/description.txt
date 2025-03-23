@@ -1,0 +1,15 @@
+Wikiman
+
+An offline search engine for manual pages, Arch Wiki, TLDR pages, and FreeBSD documentation. Wikiman provides an easy interface for browsing documentation without the need to be exact and connected to the internet.
+
+Features:
+- Full text search for wikis and documentation
+- Partial name and description matching for man pages
+- Fuzzy filtering for search results
+- Offline access to comprehensive documentation
+- Support for multiple documentation sources (man, Arch Wiki, TLDR, FreeBSD)
+- Terminal-based user interface with preview
+- Convenient keyboard shortcuts
+- Shell integration with Ctrl+F keybinding
+
+This setup includes additional documentation sources (Arch Wiki, TLDR pages, and FreeBSD documentation) and configures them for immediate use. 

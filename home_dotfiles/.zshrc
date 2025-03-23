@@ -153,3 +153,6 @@ source ~/.gh-completion.zsh
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$PATH:/usr/local/go/bin
 export JAVA_HOME=/usr/lib/jvm/java-1.21.0-openjdk-amd64
+
+# Use Neovim as man page viewer
+export MANPAGER='nvim +Man!'

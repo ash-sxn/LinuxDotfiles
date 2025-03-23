@@ -1,0 +1,1 @@
+Bridge Utils provides tools for configuring the Linux ethernet bridge, which is used to create a virtual LAN by connecting multiple network segments. These utilities are essential for networking configurations, especially for virtualization and containerization systems. 

@@ -15,7 +15,11 @@ LinuxDotfiles/
 │   ├── browsers/             # Web browsers
 │   ├── productivity/         # Productivity applications
 │   ├── multimedia/           # Media players and editors
+│   ├── desktop/              # Desktop environments and customization
 │   └── system/               # System utilities and tools
+├── testing/                  # Testing frameworks for installation scripts
+│   ├── package-test-framework/ # Tests for individual package installations
+│   └── gnome-install-tests/  # Tests for GNOME installation and customization
 ├── template.sh               # Template for package installation scripts
 └── README.md                 # This file
 ```
@@ -32,6 +36,7 @@ Each package folder contains:
 - **Modular Design**: Each application has its own directory with installation and configuration scripts
 - **Easy Selection**: Interactive menu to select which applications to install
 - **Automatic Configuration**: Option to automatically set up configuration files for installed applications
+- **Testing Framework**: Docker-based testing to ensure scripts work across distributions
 
 ## Supported Applications
 
@@ -40,6 +45,8 @@ Each package folder contains:
 - Tmux
 - Neovim
 - Alacritty
+- Tealdeer (tldr client)
+- Wikiman (offline documentation browser)
 
 ### Development Tools
 - Git
@@ -50,17 +57,19 @@ Each package folder contains:
 ### Browsers
 - Firefox
 - Google Chrome
-- Chromium
 
 ### Productivity Applications
 - GPaste (Clipboard Manager)
 - Cursor (AI IDE)
+- Upwork
 - LibreOffice
 
 ### Multimedia
 - MPV
 - VLC
-- GIMP
+
+### Desktop Environments
+- GNOME Desktop Environment
 
 ### System Utilities
 - Bridge Utils
@@ -79,6 +88,30 @@ chmod +x install.sh
 ```
 
 The script will guide you through the installation process.
+
+## Testing
+
+This project includes testing frameworks to ensure installation scripts work correctly across different Linux distributions:
+
+### Package Testing Framework
+
+Tests individual package installation scripts across multiple distributions using Docker containers. This ensures that packages install correctly regardless of the base Linux distribution.
+
+```bash
+cd testing/package-test-framework
+./run_package_tests.sh firefox vscode
+```
+
+### GNOME Testing Framework
+
+Tests GNOME Desktop Environment installation and customization scripts across multiple distributions.
+
+```bash
+cd testing/gnome-install-tests
+./run_tests.sh
+```
+
+See the [testing directory](testing/README.md) for more information.
 
 ## Adding New Packages
 

@@ -1,0 +1,12 @@
+Tealdeer (tldr)
+
+A fast implementation of the tldr command line client in Rust. The tldr pages are a collection of simplified and community-driven man pages that focus on practical examples rather than exhaustive explanations.
+
+Tealdeer provides simplified, example-based documentation for command line tools. Unlike traditional man pages, tldr pages show practical examples of how to use a command, making it much faster to understand basic usage.
+
+Features:
+- Fast and lightweight, written in Rust
+- Colorful and readable output
+- Automatic caching of documentation
+- Offline access to documentation
+- Customizable through a simple configuration file 

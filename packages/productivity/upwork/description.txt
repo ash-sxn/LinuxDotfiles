@@ -1,0 +1,21 @@
+Upwork - Desktop application for the Upwork freelancing platform
+
+Upwork is a desktop application that provides convenient access to the Upwork freelancing platform. The application allows freelancers and clients to communicate, manage projects, track time, and handle contracts more efficiently than through the web interface alone.
+
+Key Features:
+• Desktop notifications for messages and job alerts
+• Built-in time tracking with screenshots for hourly contracts
+• Work diary to record and verify billable hours
+• Offline access to some features
+• Seamless file sharing capabilities
+• Integrated messaging system
+• Real-time updates for project milestones
+• Quick access to active contracts and jobs
+• Lower resource usage compared to browser-based access
+• Automatic synchronization when online
+• Enhanced security with local session management
+• Activity level monitoring for accurate time tracking
+• Custom shortcuts and productivity tools
+• Resume work offline and sync when reconnected
+
+The Upwork desktop application simplifies the workflow for both freelancers and clients, providing a more streamlined experience compared to the web interface. It's particularly valuable for professionals who need reliable time tracking and prefer desktop notifications for their Upwork activities. 

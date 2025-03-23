@@ -1,0 +1,13 @@
+Zsh is a powerful shell with improved features and Oh My Zsh is a framework for managing Zsh configuration
+The Z shell (Zsh) is an extended version of the Bourne Shell (sh) with many improvements, including features from Bash, ksh, and tcsh. Oh My Zsh is a framework for managing your Zsh configuration that comes bundled with thousands of helpful functions, plugins, and themes.
+
+Features:
+- Improved tab completion
+- Spelling correction
+- Shared command history across sessions
+- Rich plugin ecosystem
+- Customizable prompts and themes
+- Git integration
+- Syntax highlighting
+- Autosuggestions
+- Scripting capabilities 

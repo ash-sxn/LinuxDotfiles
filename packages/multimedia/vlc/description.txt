@@ -1,0 +1,23 @@
+VLC - Free and open-source cross-platform multimedia player
+
+VLC (initially VideoLAN Client) is a free and open-source, portable, cross-platform media player and streaming media server developed by the VideoLAN project. VLC plays most multimedia files, discs, streams, devices, and protocols. VLC is renowned for its versatility, simplicity, and wide format support.
+
+Key Features:
+• Support for virtually all video and audio formats without additional codecs
+• Built-in video and audio filters and effects
+• Hardware acceleration for smooth playback
+• Advanced subtitle support and synchronization
+• Streaming and media conversion capabilities
+• Network browsing for DLNA/UPnP media servers
+• Customizable interface with themes and skins
+• Audio and video deinterlacing and post-processing
+• Live recording of streaming content
+• Podcast and internet radio support
+• Video snapshot and screen capture features
+• Extensive keyboard shortcuts and hotkeys
+• Playlist and library management
+• Highly extensible with add-ons and extensions
+• Support for DVD, VCD, and Blu-ray playback
+• Multi-track audio and subtitle selection
+
+VLC is known for its ability to play damaged, incomplete, or unfinished media files, making it particularly useful for previewing downloads or testing media. The player's simple interface hides a wealth of features and configuration options for advanced users while remaining accessible to beginners. 

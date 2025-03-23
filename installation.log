@@ -1,0 +1,6 @@
+# Installation Log - Sun Mar 23 14:33:29 UTC 2025
+[2025-03-23 14:33:29] Starting installation script
+[2025-03-23 14:33:29] INFO: Detected distribution: Arch Linux 20250316.0.322463 (Family: arch)
+[2025-03-23 14:33:29] SECTION: Checking Dependencies
+[2025-03-23 14:33:29] WARNING: The following dependencies are missing: wget git
+[2025-03-23 16:39:03] ERROR: Dependencies are required for this script to work properly.

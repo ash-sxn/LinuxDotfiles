@@ -1,12 +1,11 @@
 #!/bin/bash
 
-
-# GPaste clipboard manager installation script
+# GNOME Desktop Environment installation script
 
 # Package information
-PACKAGE_NAME="GPaste"
-PACKAGE_DESCRIPTION="Clipboard manager for GNOME desktop environment"
-PACKAGE_DOTFILES_DIR="$HOME/.config/gpaste"
+PACKAGE_NAME="GNOME Desktop Environment"
+PACKAGE_DESCRIPTION="A desktop environment that aims to be simple and easy to use"
+PACKAGE_DOTFILES_DIR="$HOME/.config/gnome"
 
 # Detect the Linux distribution
 detect_distro() {
@@ -40,85 +39,71 @@ detect_distro() {
     echo "Detected distribution: $DISTRO (Family: $DISTRO_FAMILY)"
 }
 
-# Check if GPaste is already installed
+# Check if GNOME is already installed
 is_installed() {
-    if command -v gpaste-client &> /dev/null; then
-        return 0  # true, package is installed
+    if command -v gnome-shell &> /dev/null; then
+        return 0  # true, GNOME is installed
     else
-        return 1  # false, package is not installed
+        return 1  # false, GNOME is not installed
     fi
 }
 
-# Install GPaste on Debian-based systems
+# Install GNOME on Debian-based systems
 install_debian() {
     echo "Installing $PACKAGE_NAME on Debian-based system..."
     
     sudo apt update
-    sudo apt install -y gpaste gnome-shell-extension-gpaste
+    sudo apt install -y gnome-shell gnome-control-center gnome-tweaks gnome-shell-extensions
     
-    # Enable GNOME extension if GNOME is running
-    if command -v gnome-shell &> /dev/null; then
-        gnome-extensions enable gpaste@gnome-shell-extensions.gnome.org 2>/dev/null || true
-        echo "GPaste GNOME extension enabled (if available)"
+    # Install additional GNOME applications
+    sudo apt install -y nautilus gedit gnome-terminal gnome-calculator gnome-system-monitor
+    
+    # Set gdm3 as default display manager if available
+    if command -v gdm3 &> /dev/null; then
+        sudo systemctl enable gdm3
     fi
-    
-    # Start GPaste daemon
-    gpaste-client daemon-reexec || true
 }
 
-# Install GPaste on Red Hat-based systems
+# Install GNOME on Red Hat-based systems
 install_redhat() {
     echo "Installing $PACKAGE_NAME on Red Hat-based system..."
     
-    sudo dnf install -y gpaste gnome-shell-extension-gpaste
+    # Install GNOME workstation
+    sudo dnf groupinstall -y "GNOME Desktop Environment"
     
-    # Enable GNOME extension if GNOME is running
-    if command -v gnome-shell &> /dev/null; then
-        gnome-extensions enable gpaste@gnome-shell-extensions.gnome.org 2>/dev/null || true
-        echo "GPaste GNOME extension enabled (if available)"
-    fi
+    # Install additional tools
+    sudo dnf install -y gnome-tweaks gnome-extensions-app
     
-    # Start GPaste daemon
-    gpaste-client daemon-reexec || true
+    # Set GDM as default display manager
+    sudo systemctl enable gdm
 }
 
-# Install GPaste on Arch-based systems
+# Install GNOME on Arch-based systems
 install_arch() {
     echo "Installing $PACKAGE_NAME on Arch-based system..."
     
-    # Install from official repos
-    sudo pacman -S --noconfirm gpaste
+    # Install GNOME group
+    sudo pacman -S --noconfirm gnome
     
-    # For GNOME integration
-    sudo pacman -S --noconfirm gnome-shell-extension-gpaste || true
+    # Install additional tools
+    sudo pacman -S --noconfirm gnome-tweaks gnome-shell-extensions
     
-    # Enable GNOME extension if GNOME is running
-    if command -v gnome-shell &> /dev/null; then
-        gnome-extensions enable gpaste@gnome-shell-extensions.gnome.org 2>/dev/null || true
-        echo "GPaste GNOME extension enabled (if available)"
-    fi
-    
-    # Start GPaste daemon
-    gpaste-client daemon-reexec || true
+    # Enable GDM
+    sudo systemctl enable gdm
 }
 
-# Install GPaste on SUSE-based systems
+# Install GNOME on SUSE-based systems
 install_suse() {
     echo "Installing $PACKAGE_NAME on SUSE-based system..."
     
-    sudo zypper install -y gpaste
+    # Install GNOME pattern
+    sudo zypper install -y -t pattern gnome
     
-    # For GNOME integration
-    sudo zypper install -y gnome-shell-extension-gpaste || true
+    # Install additional tools
+    sudo zypper install -y gnome-tweaks
     
-    # Enable GNOME extension if GNOME is running
-    if command -v gnome-shell &> /dev/null; then
-        gnome-extensions enable gpaste@gnome-shell-extensions.gnome.org 2>/dev/null || true
-        echo "GPaste GNOME extension enabled (if available)"
-    fi
-    
-    # Start GPaste daemon
-    gpaste-client daemon-reexec || true
+    # Enable GDM
+    sudo systemctl enable gdm
 }
 
 # Generic installation function for unsupported distributions
@@ -126,38 +111,33 @@ install_generic() {
     echo "Installing $PACKAGE_NAME on unsupported distribution..."
     echo "Attempting generic installation method..."
     
-    echo "GPaste is available on most Linux distributions."
-    echo "Please install GPaste using your distribution's package manager."
-    echo "For example:"
-    echo "  - Debian/Ubuntu: sudo apt install gpaste"
-    echo "  - Fedora: sudo dnf install gpaste"
-    echo "  - Arch Linux: sudo pacman -S gpaste"
-    
-    return 1  # Return failure
+    echo "GNOME installation might not be automated for your distribution."
+    echo "Please refer to your distribution's documentation for installing GNOME."
 }
 
-# Setup configuration files
+# Setup GNOME configuration files and settings
 setup_config() {
     echo "Setting up configuration for $PACKAGE_NAME..."
     
     # Create config directory if it doesn't exist
     mkdir -p "$PACKAGE_DOTFILES_DIR"
     
-    # Set up default configuration
-    if command -v gpaste-client &> /dev/null; then
-        # Set GPaste to save history on exit
-        gpaste-client settings --save-history true
+    # Apply GNOME settings if installed
+    if command -v gsettings &> /dev/null; then
+        # Set preferred settings
+        gsettings set org.gnome.desktop.interface enable-animations true
+        gsettings set org.gnome.desktop.wm.preferences button-layout "appmenu:minimize,maximize,close"
+        gsettings set org.gnome.desktop.interface gtk-theme "Adwaita"
+        gsettings set org.gnome.desktop.wm.preferences theme "Adwaita"
+        gsettings set org.gnome.desktop.interface icon-theme "Adwaita"
         
-        # Set maximum history size to 100 items
-        gpaste-client settings --max-history-size 100
+        # Terminal settings
+        gsettings set org.gnome.Terminal.Legacy.Settings theme-variant "dark"
         
-        # Set maximum display history size to 30 items
-        gpaste-client settings --max-displayed-history-size 30
-        
-        # Set maximum text item size to 5000 characters
-        gpaste-client settings --max-text-item-size 5000
-        
-        echo "GPaste default configuration has been set up."
+        # Copy any additional configuration files
+        cp -r "$(dirname "$0")/config/"* "$PACKAGE_DOTFILES_DIR/" 2>/dev/null || true
+    else
+        echo "gsettings command not found. Cannot apply GNOME settings."
     fi
     
     echo "Configuration setup complete!"
@@ -169,7 +149,7 @@ install_package() {
     
     if is_installed; then
         echo "$PACKAGE_NAME is already installed."
-        read -p "Do you want to reinstall it? (y/N): " choice
+        read -p "Do you want to reinstall/update it? (y/N): " choice
         if [[ ! $choice =~ ^[Yy]$ ]]; then
             echo "Skipping installation."
             return
@@ -213,19 +193,26 @@ uninstall_package() {
         return
     fi
     
+    echo "WARNING: Uninstalling GNOME might affect your current desktop environment."
+    read -p "Are you sure you want to proceed? (y/N): " choice
+    if [[ ! $choice =~ ^[Yy]$ ]]; then
+        echo "Uninstallation cancelled."
+        return
+    fi
+    
     # Uninstall based on distribution family
     case $DISTRO_FAMILY in
         debian)
-            sudo apt remove -y gpaste gnome-shell-extension-gpaste
+            sudo apt remove --autoremove -y gnome-shell gnome-control-center gnome-tweaks gnome-shell-extensions
             ;;
         redhat)
-            sudo dnf remove -y gpaste gnome-shell-extension-gpaste
+            sudo dnf groupremove -y "GNOME Desktop Environment"
             ;;
         arch)
-            sudo pacman -Rs --noconfirm gpaste gnome-shell-extension-gpaste
+            sudo pacman -Rs --noconfirm gnome
             ;;
         suse)
-            sudo zypper remove -y gpaste gnome-shell-extension-gpaste
+            sudo zypper remove -y -t pattern gnome
             ;;
         *)
             echo "Unsupported distribution for automatic uninstallation."
@@ -236,9 +223,9 @@ uninstall_package() {
     # Backup and remove config files
     if [ -d "$PACKAGE_DOTFILES_DIR" ]; then
         echo "Backing up configuration files..."
-        backup_dir="$HOME/.config/backup/gpaste-$(date +%Y%m%d-%H%M%S)"
+        backup_dir="$HOME/.config/backup/gnome"
         mkdir -p "$backup_dir"
-        cp -r "$PACKAGE_DOTFILES_DIR"/* "$backup_dir"/ 2>/dev/null || true
+        cp -r "$PACKAGE_DOTFILES_DIR" "$backup_dir"
         
         read -p "Do you want to remove configuration files? (y/N): " choice
         if [[ $choice =~ ^[Yy]$ ]]; then

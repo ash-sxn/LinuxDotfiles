@@ -1,0 +1,22 @@
+Firefox - Free and open-source web browser
+
+Firefox is a fast, lightweight, privacy-focused web browser developed by Mozilla Foundation. It is cross-platform and available on Windows, macOS, Linux, Android, and iOS. Firefox focuses on user privacy and freedom while offering modern web browsing features.
+
+Key Features:
+• Enhanced tracking protection to block trackers and malicious scripts
+• Extensive privacy controls and features
+• Fast page loading and rendering engine
+• Low memory usage compared to other browsers
+• Support for extensions and themes through Mozilla Add-ons
+• Multi-process architecture for improved stability
+• Sync functionality across devices
+• Integrated developer tools
+• Picture-in-picture video viewing
+• Customizable interface with multiple themes
+• Reader view for distraction-free reading
+• Mozilla's Pocket integration for saving articles
+• Built-in screenshot tool
+• Support for WebAuthn for passwordless authentication
+• DNS over HTTPS support for enhanced security
+
+Firefox is one of the few major browsers not based on Chromium, using its own rendering engine (Gecko) which helps maintain diversity in web standards implementation. It prioritizes user privacy by blocking third-party tracking cookies by default and offering features that let users take control of their online experience. 

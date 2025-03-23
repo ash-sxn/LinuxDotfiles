@@ -1,0 +1,7 @@
+GNOME Desktop Environment
+
+A desktop environment that aims to be simple and easy to use, focused on elegance and user experience. 
+The standard layout consists of a top panel and a dash to display applications.
+
+This package installs the core GNOME desktop environment along with essential applications and utilities.
+It also sets up a basic configuration with sensible defaults for a productive workflow. 

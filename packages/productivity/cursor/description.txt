@@ -1,0 +1,21 @@
+Cursor - AI-first code editor based on VSCode
+
+Cursor is a modern code editor built on top of VSCode that integrates AI capabilities directly into your coding workflow. It leverages large language models (LLMs) to help developers write, understand, and debug code more efficiently.
+
+Key Features:
+• Built on VSCode's foundation with full extension compatibility
+• AI-powered code generation and completion
+• Chat interface for asking coding questions in context
+• Code explanation and documentation generation
+• Intelligent bug fixing and error detection
+• Automatic code refactoring suggestions
+• Function and class generation from natural language descriptions
+• Smart search across your codebase
+• Multi-language support for most programming languages
+• Git integration and collaboration features
+• Terminal integration
+• Fast and responsive interface
+• Regular updates with new AI capabilities
+• Context-aware AI that understands your entire codebase
+
+Cursor combines the familiar experience of VSCode with powerful AI assistance, allowing developers to focus on solving problems rather than writing boilerplate code. It can significantly accelerate development by providing intelligent suggestions and automating repetitive tasks. 
