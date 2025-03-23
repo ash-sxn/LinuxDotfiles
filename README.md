@@ -40,6 +40,7 @@ Below is a comprehensive list of applications that will be installed in your new
 - [x] Cursor (AI-powered IDE)
 - [x] ADB (Android Debug Bridge)
 - [x] Python & iPython
+- [x] Go Programming Language
 - [x] Build essentials (gcc, make, etc.)
 - [x] aria2 (Download utility)
 
@@ -62,7 +63,7 @@ Below is a comprehensive list of applications that will be installed in your new
 
 ### Productivity & Utilities
 
-- [x] CopyQ (Clipboard manager) - *Backed up*
+- [x] GPaste (GNOME clipboard manager)
 - [x] Ulauncher (Application launcher) - *Backed up*
 - [x] Slack (Flatpak)
 - [x] Signal (Secure messaging app)
@@ -72,12 +73,6 @@ Below is a comprehensive list of applications that will be installed in your new
 
 - [x] MPV (Media player)
 - [x] VLC (Media player)
-
-### Gaming & Entertainment
-
-- [x] Wine (Windows compatibility layer)
-- [x] GameMode (System optimization for gaming)
-- [x] Steam (available via Snap)
 
 ### System Tools
 
