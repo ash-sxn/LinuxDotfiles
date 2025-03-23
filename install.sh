@@ -19,6 +19,36 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 LOG_FILE="$SCRIPT_DIR/installation.log"
 SUMMARY_FILE="$SCRIPT_DIR/summary.md"
 
+# Command-line arguments
+INTERACTIVE_MODE=true
+SELECTED_PACKAGES=()
+INSTALL_ALL=false
+LIST_ONLY=false
+
+# Function to display help message
+show_help() {
+    echo -e "${BLUE}Linux Dotfiles Installation Script${NC}"
+    echo
+    echo "Usage: $0 [OPTIONS] [package1 package2 ...]"
+    echo
+    echo "Options:"
+    echo "  -h, --help             Display this help message"
+    echo "  -l, --list             List all available packages and exit"
+    echo "  -a, --all              Install all available packages"
+    echo "  -c, --category CATEGORY Install all packages in specified category"
+    echo "  -y, --yes              Non-interactive mode (answer yes to all prompts)"
+    echo
+    echo "Examples:"
+    echo "  $0                     Run in interactive mode"
+    echo "  $0 --list              List all available packages"
+    echo "  $0 --all               Install all packages"
+    echo "  $0 --category Terminal Install all terminal packages"
+    echo "  $0 neovim tmux         Install specified packages only"
+    echo "  $0 -y neovim tmux      Install specified packages non-interactively"
+    echo
+    exit 0
+}
+
 # Function to log messages
 log() {
     local message="$1"
@@ -275,6 +305,12 @@ discover_packages() {
         
         if [ -d "$SCRIPT_DIR/$category_path" ]; then
             print_status "Checking category: $category" "info"
+            
+            if [ "$LIST_ONLY" = true ]; then
+                echo -e "\n${MAGENTA}${category}${NC}"
+                echo -e "${MAGENTA}$(printf '=%.0s' $(seq 1 ${#category}))${NC}"
+            fi
+            
             summary_log "### $category" "normal"
             
             # Find all installation scripts in the category directory
@@ -288,7 +324,12 @@ discover_packages() {
                     local description=""
                     local full_description=""
                     
-                    if [ -f "$package_dir/description.txt" ]; then
+                    # Look for a description file first
+                    if [ -f "$package_dir/description" ]; then
+                        description=$(head -n 1 "$package_dir/description")
+                        # Get full description for summary
+                        full_description=$(cat "$package_dir/description")
+                    elif [ -f "$package_dir/description.txt" ]; then
                         description=$(head -n 1 "$package_dir/description.txt")
                         # Get full description for summary
                         full_description=$(cat "$package_dir/description.txt")
@@ -304,6 +345,12 @@ discover_packages() {
                     package_descriptions["$package_name"]="$full_description"
                     
                     print_status "Found package: $package_name - $description" "info"
+                    
+                    # Print package info in list-only mode
+                    if [ "$LIST_ONLY" = true ]; then
+                        echo -e "  ${GREEN}$package_name${NC} - $description"
+                    fi
+                    
                     summary_log "- **$package_name**: $description" "normal"
                 fi
             done
@@ -322,6 +369,16 @@ discover_packages() {
     else
         print_status "Found ${#available_packages[@]} packages across ${#package_categories[@]} categories." "success"
         summary_log "Found **${#available_packages[@]}** packages across **${#package_categories[@]}** categories." "success"
+        
+        # In list-only mode, show usage help after listing packages
+        if [ "$LIST_ONLY" = true ]; then
+            echo -e "\n${BLUE}To install specific packages:${NC}"
+            echo -e "  $0 package1 package2 ..."
+            echo -e "\n${BLUE}To install all packages:${NC}"
+            echo -e "  $0 --all"
+            echo -e "\n${BLUE}To install all packages in a category:${NC}"
+            echo -e "  $0 --category CategoryName"
+        fi
     fi
 }
 
@@ -329,6 +386,7 @@ discover_packages() {
 select_packages() {
     print_section "Select Packages to Install"
     
+    # Initialize selected_packages as a global associative array
     declare -A selected_packages
     declare -A category_packages
     
@@ -345,14 +403,28 @@ select_packages() {
     summary_log "Selected Packages" "subheader"
     
     # Option for selecting all packages
-    read -p "Do you want to install all packages? (y/N): " install_all
+    if [ "$ANSWER_YES" = "true" ]; then
+        install_all="y"
+    else
+        read -p "Do you want to install all packages? (y/N): " install_all
+    fi
     
     if [[ $install_all =~ ^[Yy]$ ]]; then
+        # Debug output
+        log "User selected to install all packages"
+        print_status "Selected all packages for installation" "success"
+        
+        # Clear and populate the selected_packages array
+        selected_packages=()
         for package in "${!available_packages[@]}"; do
             selected_packages["$package"]=1
             print_status "Selected: $package" "success"
+            log "Added $package to selected_packages array"
         done
-        summary_log "User selected all packages" "info"
+        
+        # Debug output to verify packages were selected
+        log "Total packages selected: ${#selected_packages[@]}"
+        summary_log "User selected all packages (total: ${#selected_packages[@]})" "info"
     else
         # Option for selecting packages by category
         for category in "${!package_categories[@]}"; do
@@ -361,7 +433,14 @@ select_packages() {
                 echo -e "${MAGENTA}$(printf '=%.0s' $(seq 1 ${#category}))${NC}"
                 
                 # Option to select all packages in category
-                read -p "Install all packages in $category? (y/N): " install_category
+                if [ "$ANSWER_YES" = "true" ]; then
+                    install_category="n" # Default to no for automatic mode unless explicitly specified
+                    if [ "$SELECTED_CATEGORY" = "$category" ]; then
+                        install_category="y"
+                    fi
+                else
+                    read -p "Install all packages in $category? (y/N): " install_category
+                fi
                 
                 if [[ $install_category =~ ^[Yy]$ ]]; then
                     for package in ${category_packages[$category]}; do
@@ -373,7 +452,19 @@ select_packages() {
                     # Individual package selection
                     for package in ${category_packages[$category]}; do
                         local description="${available_packages[$package]}"
-                        read -p "Install $package ($description)? (y/N): " install_choice
+                        
+                        if [ "$ANSWER_YES" = "true" ]; then
+                            install_choice="n" # Default to no for automatic mode
+                            # Check if this package is in the SELECTED_PACKAGES array
+                            for selected in "${SELECTED_PACKAGES[@]}"; do
+                                if [ "$selected" = "$package" ]; then
+                                    install_choice="y"
+                                    break
+                                fi
+                            done
+                        else
+                            read -p "Install $package ($description)? (y/N): " install_choice
+                        fi
                         
                         if [[ $install_choice =~ ^[Yy]$ ]]; then
                             selected_packages["$package"]=1
@@ -390,8 +481,14 @@ select_packages() {
     # Confirm selection
     if [ ${#selected_packages[@]} -eq 0 ]; then
         print_status "No packages selected." "warning"
+        log "No packages in selected_packages array: count=${#selected_packages[@]}"
         summary_log "No packages were selected." "warning"
-        read -p "Do you want to continue without installing any packages? (y/N): " continue_choice
+        
+        if [ "$ANSWER_YES" = "true" ]; then
+            continue_choice="n"
+        else
+            read -p "Do you want to continue without installing any packages? (y/N): " continue_choice
+        fi
         
         if [[ ! $continue_choice =~ ^[Yy]$ ]]; then
             print_status "Installation cancelled." "info"
@@ -399,14 +496,20 @@ select_packages() {
             exit 0
         fi
     else
-        summary_log "### Selected Packages:" "normal"
+        log "Packages in selected_packages array: count=${#selected_packages[@]}"
+        summary_log "### Selected Packages (${#selected_packages[@]} total):" "normal"
         echo -e "\n${GREEN}Selected packages:${NC}"
         for package in "${!selected_packages[@]}"; do
             echo -e "  - $package (${package_categories_map[$package]})"
+            log "Selected package: $package"
             summary_log "- **$package** (${package_categories_map[$package]})" "normal"
         done
         
-        read -p "Do you want to proceed with the installation? (Y/n): " confirm_choice
+        if [ "$ANSWER_YES" = "true" ]; then
+            confirm_choice="y"
+        else
+            read -p "Do you want to proceed with the installation? (Y/n): " confirm_choice
+        fi
         
         if [[ $confirm_choice =~ ^[Nn]$ ]]; then
             print_status "Installation cancelled." "info"
@@ -720,8 +823,29 @@ main() {
     # Discover available packages
     discover_packages
     
-    # Let the user select packages to install
-    select_packages
+    # Process command-line arguments if not in interactive mode
+    if [ "$INTERACTIVE_MODE" = false ] || [ "$LIST_ONLY" = true ] || [ "$INSTALL_ALL" = true ] || [ ${#SELECTED_PACKAGES[@]} -gt 0 ]; then
+        # If list-only mode is enabled, just exit after listing packages
+        if [ "$LIST_ONLY" = true ]; then
+            exit 0
+        fi
+        
+        # If specific packages were specified, validate and use them
+        if [ ${#SELECTED_PACKAGES[@]} -gt 0 ]; then
+            validate_and_use_selected_packages
+        elif [ "$INSTALL_ALL" = true ]; then
+            # Select all packages automatically
+            for package in "${!available_packages[@]}"; do
+                selected_packages["$package"]=1
+                log "Selected package (auto): $package"
+            done
+            log "Automatically selected all packages (${#selected_packages[@]} total)"
+            summary_log "All packages were automatically selected" "info"
+        fi
+    else
+        # Let the user select packages to install interactively
+        select_packages
+    fi
     
     # Install the selected packages
     install_selected_packages
@@ -745,6 +869,94 @@ main() {
     summary_log "" "normal"
     summary_log "Installation completed at $(date)" "normal"
 }
+
+# Parse command-line arguments
+parse_arguments() {
+    while [[ $# -gt 0 ]]; do
+        case "$1" in
+            -h|--help)
+                show_help
+                ;;
+            -l|--list)
+                LIST_ONLY=true
+                INTERACTIVE_MODE=false
+                shift
+                ;;
+            -a|--all)
+                INSTALL_ALL=true
+                INTERACTIVE_MODE=false
+                shift
+                ;;
+            -c|--category)
+                SELECTED_CATEGORY="$2"
+                INTERACTIVE_MODE=false
+                shift 2
+                ;;
+            -y|--yes)
+                ANSWER_YES=true
+                shift
+                ;;
+            -*)
+                echo "Unknown option: $1"
+                show_help
+                ;;
+            *)
+                SELECTED_PACKAGES+=("$1")
+                INTERACTIVE_MODE=false
+                shift
+                ;;
+        esac
+    done
+}
+
+# Function to validate and apply manually selected packages
+validate_and_use_selected_packages() {
+    local invalid_packages=()
+    
+    # Reset selected packages array
+    declare -A selected_packages
+    
+    print_status "Validating specified packages..." "info"
+    
+    for package in "${SELECTED_PACKAGES[@]}"; do
+        if [[ -n "${available_packages[$package]}" ]]; then
+            selected_packages["$package"]=1
+            print_status "Selected package: $package" "success"
+            log "Selected package (CLI): $package"
+        else
+            invalid_packages+=("$package")
+        fi
+    done
+    
+    if [ ${#invalid_packages[@]} -gt 0 ]; then
+        print_status "The following packages are invalid or not available: ${invalid_packages[*]}" "warning"
+        summary_log "Invalid packages specified: ${invalid_packages[*]}" "warning"
+        
+        if [ "$ANSWER_YES" != "true" ]; then
+            read -p "Do you want to continue with the valid packages? (y/N): " continue_choice
+            if [[ ! $continue_choice =~ ^[Yy]$ ]]; then
+                print_status "Installation cancelled." "info"
+                summary_log "Installation cancelled by user." "info"
+                exit 0
+            fi
+        fi
+    fi
+    
+    if [ ${#selected_packages[@]} -eq 0 ]; then
+        print_status "No valid packages selected." "error"
+        summary_log "No valid packages were selected." "error"
+        exit 1
+    else
+        log "Valid packages selected: ${#selected_packages[@]}"
+        summary_log "### Selected Packages (${#selected_packages[@]} total):" "normal"
+        for package in "${!selected_packages[@]}"; do
+            summary_log "- **$package** (${package_categories_map[$package]})" "normal"
+        done
+    fi
+}
+
+# Run the argument parser before the main function
+parse_arguments "$@"
 
 # Run the main function
 main 
