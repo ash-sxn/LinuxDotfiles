@@ -1,150 +1,99 @@
 # LinuxDotfiles
 
-A comprehensive collection of Linux configuration files, setup scripts, and utilities to make migrating between distributions seamless. This repository contains configuration files and setup scripts to replicate your preferred environment on any Linux distribution, with a focus on migration from Ubuntu to Arch Linux.
+A collection of Linux configuration files and setup scripts for personal use. This project aims to make it easier to set up a new Linux system with preferred applications and configurations.
 
-## Repository Contents
+## Project Structure
 
-* `.config/`: Configuration files from various applications
-* `home_dotfiles/`: Dotfiles from your home directory (like .bashrc, .zshrc)
-* `system_config/`: System configuration files
-* `arch_setup.sh`: Script for setting up a new Arch Linux system
-* `collect_dotfiles.sh`: Script to gather and backup your dotfiles
-* `MIGRATION.md`: Guide for migrating from Ubuntu to Arch Linux
+The repository is organized into a modular structure:
 
-## Package Management Systems
+```
+LinuxDotfiles/
+├── install.sh                # Main installation script
+├── packages/                 # Package installation scripts
+│   ├── terminal/             # Terminal applications
+│   ├── development/          # Development tools
+│   ├── browsers/             # Web browsers
+│   ├── productivity/         # Productivity applications
+│   ├── multimedia/           # Media players and editors
+│   └── system/               # System utilities and tools
+├── template.sh               # Template for package installation scripts
+└── README.md                 # This file
+```
 
-This setup includes packages from multiple sources:
-- APT (Debian/Ubuntu package manager)
-- Snap (Canonical's package distribution system)
-- Flatpak (Distribution-independent package format)
-- AUR (Arch User Repository, for Arch-based distros)
+Each package folder contains:
+- `install.sh` - Installation script that works across major Linux distributions
+- `config_setup.sh` - Script to set up configuration files
+- `config/` - Directory containing configuration files and dotfiles
+- `description.txt` - Description of the package
 
-## Applications & Dotfiles
+## Features
 
-Below is a comprehensive list of applications that will be installed in your new system setup.
+- **Cross-distribution Compatibility**: Installation scripts designed to work across major Linux distributions (Debian/Ubuntu, Arch, Fedora, openSUSE)
+- **Modular Design**: Each application has its own directory with installation and configuration scripts
+- **Easy Selection**: Interactive menu to select which applications to install
+- **Automatic Configuration**: Option to automatically set up configuration files for installed applications
 
-### Terminal & Shell
+## Supported Applications
 
-- [x] kitty (Terminal emulator) - *Backed up*
-- [x] tmux (Terminal multiplexer) - *Backed up*
-- [x] zsh (Z shell) - *Backed up*
-- [x] Oh My ZSH (ZSH framework)
-- [x] nvim (Neovim text editor) - *Backed up*
+### Terminal Applications
+- Zsh with Oh My Zsh
+- Tmux
+- Neovim
+- Alacritty
 
 ### Development Tools
-
-- [x] Git - *Backed up*
-- [x] GitHub CLI (gh) - *Backed up*
-- [x] curl, wget (download utilities)
-- [x] Docker/Containerd
-- [x] Cursor (AI-powered IDE)
-- [x] ADB (Android Debug Bridge)
-- [x] Python & iPython
-- [x] Go Programming Language
-- [x] Build essentials (gcc, make, etc.)
-- [x] aria2 (Download utility)
-
-#### VS Code Extensions
-- GitHub Copilot
-- GitHub Copilot Chat
-- Go
-- Python
-- Remote Development Extensions
-- C/C++ Tools
+- Git
+- Visual Studio Code
+- Go Programming Language
 - Docker
-- Cody AI
-- PDF Viewer
-- CSV Tools
 
 ### Browsers
+- Firefox
+- Google Chrome
+- Chromium
 
-- [x] Brave Browser - *Backed up*
-- [x] Firefox (Snap)
-
-### Productivity & Utilities
-
-- [x] GPaste (GNOME clipboard manager)
-- [x] Ulauncher (Application launcher) - *Backed up*
-- [x] Slack (Flatpak)
-- [x] Signal (Secure messaging app)
-- [x] Upwork (Freelancing platform)
+### Productivity Applications
+- GPaste (Clipboard Manager)
+- Cursor (AI IDE)
+- LibreOffice
 
 ### Multimedia
+- MPV
+- VLC
+- GIMP
 
-- [x] MPV (Media player)
-- [x] VLC (Media player)
+### System Utilities
+- Bridge Utils
+- Bluetooth Tools
+- Network Manager
 
-### System Tools
+## Usage
 
-- [x] bridge-utils (Network utilities for managing bridge connections)
-- [x] bluetooth (Bluetooth connectivity tools)
-- [x] Free Download Manager (or open-source alternative)
-- [x] Aircrack-ng (Wireless security tools)
+To use this repository, clone it and run the main installation script:
 
-## GNOME Desktop Environment
+```bash
+git clone https://github.com/yourusername/LinuxDotfiles.git
+cd LinuxDotfiles
+chmod +x install.sh
+./install.sh
+```
 
-Will be configured separately in detail later.
+The script will guide you through the installation process.
 
-## Instructions for Use
+## Adding New Packages
 
-### Backing Up Your Dotfiles
+To add a new package:
 
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/ash-sxn/LinuxDotfiles.git
-   cd LinuxDotfiles
-   ```
+1. Create a new directory in the appropriate category (e.g., `packages/development/newpackage`)
+2. Copy the template script: `cp template.sh packages/development/newpackage/install.sh`
+3. Modify the installation script for the specific package
+4. Create a configuration setup script if needed
+5. Add configuration files to the `config/` directory
 
-2. Run the collection script to gather your configuration files:
-   ```bash
-   chmod +x collect_dotfiles.sh
-   ./collect_dotfiles.sh
-   ```
+## Contributing
 
-3. Review the collected files and push to your GitHub:
-   ```bash
-   cd ~/dotfiles_backup
-   ./push_to_github.sh
-   ```
+Contributions are welcome! Feel free to add new package installation scripts or improve existing ones.
 
-### Setting Up a New System
+## License
 
-1. Clone this repository on your new system:
-   ```bash
-   git clone https://github.com/ash-sxn/LinuxDotfiles.git
-   cd LinuxDotfiles
-   ```
-
-2. For Arch Linux setup, run:
-   ```bash
-   chmod +x arch_setup.sh
-   ./arch_setup.sh
-   ```
-
-3. For detailed migration instructions, refer to `MIGRATION.md`.
-
-## Notes
-
-- Configuration files may need adjustments for different Linux distributions
-- Check the compatibility of your packages with your target distribution
-- Always review configuration files before applying them to a new system
-
-## System Tools Explained
-
-- **bridge-utils**: Used for configuring network bridge interfaces in Linux. Helpful if you use virtual machines or containers that need to share your network connection. In Arch Linux, install with `pacman -S bridge-utils`.
-
-- **bluetooth**: Tools for handling Bluetooth connections. In Arch Linux, you'll need the `bluez` and `bluez-utils` packages, installed with `pacman -S bluez bluez-utils`. You'll also need to enable the Bluetooth service with `systemctl enable bluetooth.service`.
-
-## Download Manager Options
-
-- **Free Download Manager**: Not fully open-source. Some alternatives:
-  - **uGet**: Open-source download manager with good features
-  - **aria2**: Command-line download utility with web UIs available
-  - **JDownloader**: Java-based download manager with extensive features
-  - **XDM (Xtreme Download Manager)**: Open-source alternative with browser integration
-
-## Next Steps
-
-1. For each application, we'll create installation scripts that work across different Linux distributions
-2. We'll handle GNOME desktop configuration separately
-3. The collect_dotfiles.sh script will be updated to ensure all necessary configuration files are backed up
+This project is open source and available under the MIT License.

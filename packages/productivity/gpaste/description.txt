@@ -1,0 +1,10 @@
+GPaste is a clipboard management system for GNOME desktop environment
+GPaste allows you to keep track of what you're copying and pasting. It stores multiple clipboard items for later use and provides features like history, search, and quick access.
+
+Features:
+- Clipboard history
+- GNOME Shell integration
+- Customizable keyboard shortcuts
+- Search functionality
+- Text and image support
+- History synchronization across sessions 
