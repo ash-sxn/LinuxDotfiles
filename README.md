@@ -38,6 +38,10 @@ Below is a comprehensive list of applications that will be installed in your new
 - [x] curl, wget (download utilities)
 - [x] Docker/Containerd
 - [x] Cursor (AI-powered IDE)
+- [x] ADB (Android Debug Bridge)
+- [x] Python & iPython
+- [x] Build essentials (gcc, make, etc.)
+- [x] aria2 (Download utility)
 
 #### VS Code Extensions
 - GitHub Copilot
@@ -58,7 +62,7 @@ Below is a comprehensive list of applications that will be installed in your new
 
 ### Productivity & Utilities
 
-- [x] CopyQ (Clipboard manager) - *Backed up* (Looking for better alternatives)
+- [x] CopyQ (Clipboard manager) - *Backed up*
 - [x] Ulauncher (Application launcher) - *Backed up*
 - [x] Slack (Flatpak)
 - [x] Signal (Secure messaging app)
@@ -69,11 +73,18 @@ Below is a comprehensive list of applications that will be installed in your new
 - [x] MPV (Media player)
 - [x] VLC (Media player)
 
+### Gaming & Entertainment
+
+- [x] Wine (Windows compatibility layer)
+- [x] GameMode (System optimization for gaming)
+- [x] Steam (available via Snap)
+
 ### System Tools
 
 - [x] bridge-utils (Network utilities for managing bridge connections)
 - [x] bluetooth (Bluetooth connectivity tools)
 - [x] Free Download Manager (or open-source alternative)
+- [x] Aircrack-ng (Wireless security tools)
 
 ## GNOME Desktop Environment
 
@@ -122,15 +133,6 @@ Will be configured separately in detail later.
 - Configuration files may need adjustments for different Linux distributions
 - Check the compatibility of your packages with your target distribution
 - Always review configuration files before applying them to a new system
-
-## Clipboard Manager Alternatives
-
-Some better alternatives to CopyQ and Keepboard:
-
-1. **Clipman** - Lightweight, Wayland-compatible clipboard manager
-2. **Clipit** - GTK-based clipboard manager with good feature set
-3. **Klipper** - KDE clipboard manager (if you ever use KDE)
-4. **GPaste** - GNOME Shell compatible clipboard manager with good integration
 
 ## System Tools Explained
 
