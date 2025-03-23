@@ -1,153 +1,73 @@
 #!/bin/bash
 
-# arch_setup.sh
-# Script for setting up a new Arch Linux system with GNOME
-# This is meant to replace the Ubuntu-specific setup script
+# Arch Linux setup script
+# This will install packages and set up your environment on a fresh Arch Linux installation
 
-# Exit on error
-set -e
+echo "Setting up Arch Linux environment..."
 
-echo "Starting Arch Linux system setup..."
+# Update the system
+sudo pacman -Syu --noconfirm
 
-# Function to check if a command exists
-command_exists() {
-    command -v "$1" &> /dev/null
-}
+# Install essential tools
+sudo pacman -S --noconfirm base-devel git curl wget
 
-# Function to install packages with pacman
-install_pacman_packages() {
-    echo "Installing packages with pacman..."
-    sudo pacman -Syu --noconfirm
-    sudo pacman -S --noconfirm base-devel git curl wget gnome gnome-tweaks gnome-shell-extensions \
-                                firefox kitty neovim tmux zsh htop
-}
+# Install applications equivalent to your Ubuntu setup
+sudo pacman -S --noconfirm firefox gnome-shell gnome-terminal gnome-control-center gnome-tweaks
 
-# Function to install AUR helper (yay)
-install_yay() {
-    if ! command_exists yay; then
-        echo "Installing yay (AUR helper)..."
-        cd /tmp
-        git clone https://aur.archlinux.org/yay.git
-        cd yay
-        makepkg -si --noconfirm
-        cd ~
-    else
-        echo "yay is already installed."
-    fi
-}
-
-# Function to install AUR packages
-install_aur_packages() {
-    echo "Installing packages from AUR..."
-    yay -S --noconfirm brave-bin visual-studio-code-bin copyq ulauncher github-cli
-}
-
-# Function to set up GNOME
-setup_gnome() {
-    echo "Setting up GNOME..."
-    
-    # Enable GDM
-    sudo systemctl enable gdm.service
-    
-    # Set GNOME as default desktop environment
-    if [ -f /usr/bin/gnome-session ]; then
-        sudo ln -sf /usr/bin/gnome-session /usr/bin/default-session
-    fi
-    
-    # Install GNOME extensions if extensions tool exists
-    if command_exists gnome-extensions-app; then
-        echo "Consider installing extensions through the GNOME Extensions app"
-    fi
-    
-    # Apply GNOME settings if we have a backup
-    if [ -f "$HOME/.config/dconf/user" ]; then
-        echo "Restoring GNOME settings from backup..."
-        dconf load / < "$HOME/.config/dconf/user"
-    fi
-}
-
-# Function to configure system settings
-configure_system() {
-    echo "Configuring system settings..."
-    
-    # Enable NetworkManager
-    sudo systemctl enable NetworkManager.service
-    
-    # Enable Bluetooth
-    sudo systemctl enable bluetooth.service
-    
-    # Configure time synchronization
-    sudo systemctl enable systemd-timesyncd.service
-    
-    # Set up firewall
-    if command_exists ufw; then
-        sudo ufw enable
-    fi
-    
-    # Enable SSD trimming if applicable
-    sudo systemctl enable fstrim.timer
-}
-
-# Function to restore configuration files
-restore_config() {
-    echo "Restoring configuration files..."
-    
-    # Check if we have any backed up config files
-    if [ -d "$HOME/.config-backup" ]; then
-        # Restore .config directory files
-        cp -r "$HOME/.config-backup/"* "$HOME/.config/"
-    fi
-    
-    # Link dotfiles if they exist
-    for dotfile in .bashrc .zshrc .vimrc .tmux.conf .gitconfig; do
-        if [ -f "$HOME/.dotfiles/$dotfile" ]; then
-            ln -sf "$HOME/.dotfiles/$dotfile" "$HOME/$dotfile"
-        fi
-    done
-}
-
-# Function to install and configure ZSH
-setup_zsh() {
-    echo "Setting up ZSH..."
-    
-    # Install Oh My ZSH if not already installed
-    if [ ! -d "$HOME/.oh-my-zsh" ]; then
-        sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-    fi
-    
-    # Set ZSH as default shell
-    chsh -s $(which zsh)
-}
-
-# Main execution
-echo "==== Arch Linux Setup Script ===="
-echo "This script will set up your new Arch Linux system with GNOME desktop environment."
-echo "It will install essential packages and restore your configuration files."
-echo
-
-# Confirm before proceeding
-read -p "Continue with setup? (y/n): " -n 1 -r
-echo
-if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-    echo "Setup cancelled."
-    exit 1
+# Check if yay is installed (AUR helper)
+if ! command -v yay &> /dev/null; then
+    echo "Installing yay (AUR helper)..."
+    cd /tmp
+    git clone https://aur.archlinux.org/yay.git
+    cd yay
+    makepkg -si --noconfirm
+    cd ~
 fi
 
-# Run installation steps
-install_pacman_packages
-install_yay
-install_aur_packages
-setup_gnome
-configure_system
-restore_config
-setup_zsh
+# Install apps from AUR
+echo "Installing applications from AUR..."
+yay -S --noconfirm brave-bin visual-studio-code-bin kitty copyq ulauncher 
 
-echo
-echo "==== Setup Complete ===="
-echo "Please reboot your system to apply all changes."
-echo "After reboot, consider:"
-echo "1. Checking your display settings"
-echo "2. Setting up any remaining application configurations"
-echo "3. Importing browser bookmarks and settings"
-echo
-echo "Enjoy your new Arch Linux system!" 
+# Install GitHub CLI
+yay -S --noconfirm github-cli
+
+# Create symbolic links for dotfiles
+echo "Setting up dotfiles..."
+# Run from the dotfiles directory
+if [ -d "$HOME/dotfiles_backup/.config" ]; then
+    for dir in "$HOME/dotfiles_backup/.config"/*; do
+        if [ -d "$dir" ]; then
+            target="$HOME/.config/$(basename "$dir")"
+            echo "Linking: $dir -> $target"
+            mkdir -p "$(dirname "$target")"
+            ln -sf "$dir" "$target"
+        fi
+    done
+fi
+
+# Link home dotfiles
+if [ -d "$HOME/dotfiles_backup/home_dotfiles" ]; then
+    for file in "$HOME/dotfiles_backup/home_dotfiles"/*; do
+        if [ -f "$file" ]; then
+            target="$HOME/.$(basename "$file")"
+            echo "Linking: $file -> $target"
+            ln -sf "$file" "$target"
+        fi
+    done
+fi
+
+# Install VS Code extensions
+if [ -f "$HOME/dotfiles_backup/.config/vscode_extensions.txt" ]; then
+    echo "Installing VS Code extensions..."
+    while read extension; do
+        code --install-extension "$extension" || true
+    done < "$HOME/dotfiles_backup/.config/vscode_extensions.txt"
+fi
+
+# Import dconf settings
+if [ -f "$HOME/dotfiles_backup/.config/dconf_settings.ini" ]; then
+    echo "Importing dconf settings..."
+    dconf load / < "$HOME/dotfiles_backup/.config/dconf_settings.ini"
+fi
+
+echo "Setup complete! Please restart your system for all changes to take effect."
