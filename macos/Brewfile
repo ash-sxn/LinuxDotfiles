@@ -1,0 +1,17 @@
+brew "neovim"
+brew "tmux"
+brew "fzf"
+brew "ripgrep"
+brew "wget"
+
+cask "font-meslo-lg-nerd-font"
+cask "font-jetbrains-mono-nerd-font"
+
+cask "discord"
+cask "signal"
+cask "upwork"
+cask "protonvpn"
+cask "anki"
+cask "docker"
+cask "qbittorrent"
+cask "motrix"
