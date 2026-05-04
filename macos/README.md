@@ -44,6 +44,36 @@ brew bundle --file Brewfile
 The install script does not overwrite existing files without making a timestamped
 backup first.
 
+## Post-install checklist
+
+After `brew bundle` and `./install.sh`, finish these manually on a fresh Mac:
+
+- Install or finish Docker Desktop if Homebrew stops on the privileged
+  `/usr/local/cli-plugins` step.
+- Run `gh auth login` again if GitHub CLI auth did not carry over.
+- Create a real `~/.gitconfig` with your actual name and email. Do not copy the
+  placeholder values from `dotfiles/home/.gitconfig`.
+- Install tmux TPM if you want the tmux plugins from `tmux.conf`:
+
+```sh
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+```
+
+- Open Neovim once and let it finish plugin bootstrap if needed.
+
+## Notes from the 2026 MacBook Air setup
+
+The first full setup on macOS 26.4.1 required two repo-level fixes:
+
+- `upwork` was removed from `Brewfile` because the cask no longer exists in
+  Homebrew.
+- `cmp-async-path` was pinned through GitHub in the custom Neovim plugin list
+  because the upstream NvChad reference used a Codeberg URL that was not
+  reachable in this environment.
+
+See [SETUP-2026-05-04.md](./SETUP-2026-05-04.md) for the exact machine notes and
+[SHORTCUTS.md](./SHORTCUTS.md) for the macOS keyboard refresher.
+
 ## Not included
 
 These are deliberately excluded and should be migrated manually:

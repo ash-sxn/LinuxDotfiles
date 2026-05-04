@@ -9,7 +9,6 @@ cask "font-jetbrains-mono-nerd-font"
 
 cask "discord"
 cask "signal"
-cask "upwork"
 cask "protonvpn"
 cask "anki"
 cask "docker"
